@@ -12,8 +12,12 @@ UPLOAD_FOLDER = join(dirname(realpath(__file__)), 'temp_data/temp_images')
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-@app.route('/',  methods=["POST"])
+@app.route('/', methods=["GET"])
 def index():
+    return 'INDEX'
+
+@app.route('/upload_image',  methods=["POST"])
+def upload_image():
     image = request.files['imagefile'] # getting image file from POST request
     # check to make sure its an actual image
     filename = secure_filename(randomString(8) + '.jpg') # assigning secure filename ('never trust user input')
